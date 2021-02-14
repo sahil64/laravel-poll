@@ -31437,6 +31437,18 @@ select {
   color:black;
 }
 
+.answer-accepted{
+  color:darkseagreen;
+}
+
+.answered{
+  color:lightskyblue
+}
+
+.unanswered{
+  color:yellowgreen
+}
+
 @media (min-width: 640px) {
   .sm\:container {
     width: 100%;

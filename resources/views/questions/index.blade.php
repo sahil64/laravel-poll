@@ -10,8 +10,11 @@
           <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
               <div class="p-6 bg-white border-b border-gray-200">
                 <div class="card">
-                  <div class="card-header text-3xl pl-1 text-blue-500">
-                    All Questions
+                  <div class="card-header  pl-1 text-blue-500 md:flex">
+                    <h2 class="text-3xl">All Questions</h2>
+                    <div class="ml-auto">
+                      <a class="" href="{{route('questions.create')}}">Ask Question</a>
+                    </div>
                   </div>
                   <div class="card-body">
                     @foreach ($questions as $question )
@@ -20,7 +23,7 @@
                           <div class="votes">
                             <strong>{{$question->votes}}</strong> {{str_plural('vote',$question->votes)}}
                           </div>
-                          <div class="status bg-green-500 bg-opacity-50 {{$question->status}}">
+                          <div class="status {{$question->status}}">
                             <strong>{{$question->answers}}</strong> {{str_plural('answer',$question->answers)}}
                           </div>
                           <div class="view">

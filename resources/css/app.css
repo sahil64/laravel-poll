@@ -6,3 +6,16 @@
 .counters{
   color:black;
 }
+
+.answer-accepted{
+  color:darkseagreen;
+
+}
+
+.answered{
+  color:lightskyblue
+}
+
+.unanswered{
+  color:yellowgreen
+}
