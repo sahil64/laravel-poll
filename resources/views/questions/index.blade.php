@@ -15,8 +15,19 @@
                   </div>
                   <div class="card-body">
                     @foreach ($questions as $question )
-                      <div class="media my-2 py-2">
-                        <div class="media-body box-border border-t-2 px-6">
+                      <div class="media my-2 py-2 md:flex border-t-2 ">
+                        <div class="flex flex-wrap py-3 counters md:flex md:w-34">
+                          <div class="votes">
+                            <strong>{{$question->votes}}</strong> {{str_plural('vote',$question->votes)}}
+                          </div>
+                          <div class="status bg-green-500 bg-opacity-50 {{$question->status}}">
+                            <strong>{{$question->answers}}</strong> {{str_plural('answer',$question->answers)}}
+                          </div>
+                          <div class="view">
+                            {{$question->views.' '. str_plural('view',$question->views)}}
+                          </div>
+                        </div>
+                        <div class="media-body box-border px-6">
                           <h3 class="mt-2 text-2xl text-blue-700">
                             <a href="{{$question->url}}"> {{$question->title}}</a>
                           </h3>
