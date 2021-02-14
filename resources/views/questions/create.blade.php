@@ -24,7 +24,7 @@
                           <label class="block text-gray-700 text-sm font-bold mb-2" for="Title">
                             Question Title
                           </label>
-                          <input  type="text" name="title" id="question-title" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                          <input  type="text" name="title" value="{{ old('title')}}" id="question-title" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
                           @if($errors->has('title'))
                             <p class="text-red-500 text-xs italic">
                              {{$errors->first('title')}} /Please fill out this field.</p>
@@ -34,7 +34,7 @@
                           <label class="block text-gray-700 text-sm font-bold mb-2" for="body">
                             Explain your Question
                           </label>
-                          <textarea  type="text" name="body" id="question-body" row="5" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"></textarea>
+                          <textarea  type="text" name="body" value="{{ old('body')}}" id="question-body" row="5" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"></textarea>
                           @if($errors->has('body'))
                             <p class="text-red-500 text-xs italic">
                               {{$errors->first('body')}} Please fill out this field.</p>
