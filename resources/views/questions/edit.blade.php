@@ -11,14 +11,15 @@
               <div class="p-6 bg-white border-b border-gray-200">
                 <div class="card">
                   <div class="card-header  pl-1 text-blue-500 md:flex">
-                    <h2 class="text-3xl">Ask Questions</h2>
+                    <h2 class="text-3xl">Edit Questions</h2>
                     <div class="ml-auto">
                       <a class="" href="{{route('questions.index')}}">Back to all  Questions</a>
                     </div>
                   </div>
                   <div class="card-body w-full">
-                    <form  class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" action="{{route('questions.create')}}" method="post">
-                      @include('questions._form',['question'=>$question,'buttonText'=>'Ask a Question'])
+                    <form  class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" action="{{route('questions.update',$question->id)}}" method="post">
+                      {{method_field('PUT')}}
+                      @include('questions._form',['buttonText'=>'Update a Question'])
                     </form>
                   </div>
                 </div>
