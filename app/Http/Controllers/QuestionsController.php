@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Question;
 use Illuminate\Http\Request;
 use App\Http\Requests\AskQuestionRequest;
+use Illuminate\Support\Facades\Gate;
 
 class QuestionsController extends Controller
 {
@@ -69,7 +70,11 @@ class QuestionsController extends Controller
      */
     public function edit(Question $question)
     {
+        if(!Gate::allows('update-question',$question)){
+            abort(403,"Access Denied");
+        }
         return view("questions.edit",compact('question'));
+
     }
 
     /**
@@ -81,6 +86,9 @@ class QuestionsController extends Controller
      */
     public function update(AskQuestionRequest $request, Question $question)
     {
+        if(!Gate::allows('update-question',$question)){
+            abort(403,"Access Denied");
+        }
         $question->update($request->only('title','body'));
         return redirect('/questions')->with('success','your question has been updated successfully!! ');
     }
@@ -93,6 +101,11 @@ class QuestionsController extends Controller
      */
     public function destroy(Question $question)
     {
-        //
+        if(!Gate::allows('delete-question',$question)){
+            abort(403,"Access Denied");
+        }
+        $question->delete();
+        return redirect('/questions')->with('success','your question has been deleted successfully!! ');
+
     }
 }
