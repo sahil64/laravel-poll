@@ -70,9 +70,13 @@ class QuestionsController extends Controller
      */
     public function edit(Question $question)
     {
-        if(!Gate::allows('update-question',$question)){
+        /*if(!Gate::allows('update-question',$question)){
+            abort(403,"Access Denied");
+        }*/
+        if (!$this->authorize('update', $question)) {
             abort(403,"Access Denied");
         }
+
         return view("questions.edit",compact('question'));
 
     }
@@ -86,9 +90,13 @@ class QuestionsController extends Controller
      */
     public function update(AskQuestionRequest $request, Question $question)
     {
-        if(!Gate::allows('update-question',$question)){
+        /*if(!Gate::allows('update-question',$question)){
             abort(403,"Access Denied");
+        }*/
+        if ($request->user()->cannot('update', $post)) {
+            abort(404,"Access not Granted for Updaing Question");
         }
+
         $question->update($request->only('title','body'));
         return redirect('/questions')->with('success','your question has been updated successfully!! ');
     }
@@ -101,9 +109,9 @@ class QuestionsController extends Controller
      */
     public function destroy(Question $question)
     {
-        if(!Gate::allows('delete-question',$question)){
-            abort(403,"Access Denied");
-        }
+        //if(!Gate::allows('delete-question',$question)){
+        //    abort(403,"Access Denied");
+        //}
         $question->delete();
         return redirect('/questions')->with('success','your question has been deleted successfully!! ');
 
