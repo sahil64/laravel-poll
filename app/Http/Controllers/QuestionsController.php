@@ -93,7 +93,7 @@ class QuestionsController extends Controller
         /*if(!Gate::allows('update-question',$question)){
             abort(403,"Access Denied");
         }*/
-        if ($request->user()->cannot('update', $post)) {
+        if ($request->user()->cannot('update', $question)) {
             abort(404,"Access not Granted for Updaing Question");
         }
 
