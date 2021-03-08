@@ -1,10 +1,9 @@
 <?php
 
 namespace App\Models;
-
-
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Parsedown;
 
 class Question extends Model
 {
@@ -21,8 +20,8 @@ class Question extends Model
     }
 
     public function getUrlattribute(){
-        //return route("questions.show",$this->id);
-        return "#";
+        return route("question.show",$this->slug);
+        //return "#";
     }
 
     public function getCreatedDateAttribute(){
@@ -37,6 +36,10 @@ class Question extends Model
             return "answered";
         }
         return "unansered";
+    }
+
+    public function getBodyHtmlAttribute(){
+        return Parsedown::instance()->text($this->body);
     }
 
     public function answers(){
