@@ -13,6 +13,11 @@ class Answer extends Model
     }
 
     public function user(){
-        return $this->belongdTo(User::class);
+        return $this->belongsTo(User::class);
     }
+
+    public function getCreatedDateAttribute(){
+        return $this->created_at->diffForHumans();
+    }
+
 }
